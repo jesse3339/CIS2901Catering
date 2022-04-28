@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="ojdbc6">
+    <archive path="C:/Users/Jesse/Documents/GitHub/CIS2901C/src/ojdbc6.jar" />
+  </library>
+</eclipse-userlibraries>
+

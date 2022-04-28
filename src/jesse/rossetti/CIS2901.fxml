@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jesse.rossetti.Controller">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TabPane prefHeight="575.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Main Menu">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField id="DBUsername" fx:id="DBUsername" layoutX="14.0" layoutY="44.0" promptText="Username" />
+                              <PasswordField id="DBPassword" fx:id="DBPassword" layoutX="14.0" layoutY="74.0" promptText="Password" />
+                              <Button fx:id="LoginBtn" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#connectToDB" prefHeight="25.0" prefWidth="150.0" text="Login" />
+                              <Label id="DBConnectionLBL" fx:id="DBConnectionLBL" layoutX="14.0" layoutY="134.0" text="Not Connected" textFill="RED" />
+                              <TextField fx:id="dbName" layoutX="14.0" layoutY="14.0" promptText="Database Name (xe)" />
+                              <ImageView fitHeight="519.0" fitWidth="583.0" layoutX="200.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Orders">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField id="OrderCost" fx:id="OrderCost" layoutX="15.0" layoutY="165.0" prefHeight="25.0" prefWidth="150.0" promptText="Cost" />
+                              <DatePicker id="OrderDeliveryDate" fx:id="OrderDeliveryDate" layoutX="15.0" layoutY="135.0" prefHeight="25.0" prefWidth="150.0" promptText="Delivery Date" />
+                              <TextArea id="OrderNotes" fx:id="OrderNotes" layoutX="14.0" layoutY="225.0" prefHeight="202.0" prefWidth="150.0" promptText="Order Notes" />
+                              <Button id="PlaceOrderBtn" fx:id="PlaceOrderBtn" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="25.0" prefWidth="150.0" text="Place New Order" />
+                              <TableView fx:id="orderTable" layoutX="180.0" layoutY="15.0" prefHeight="515.0" prefWidth="600.0">
+                                <columns>
+                                  <TableColumn fx:id="oColOrderId" text="Order ID" />
+                                  <TableColumn fx:id="oColCustomerId" prefWidth="77.0" text="Customer ID" />
+                                    <TableColumn fx:id="oColSDate" prefWidth="84.0" text="SDate" />
+                                    <TableColumn fx:id="oColDDate" prefWidth="72.0" text="DDate" />
+                                    <TableColumn fx:id="oColCost" prefWidth="61.0" text="Cost" />
+                                    <TableColumn fx:id="oColStatus" prefWidth="59.0" text="Status" />
+                                    <TableColumn fx:id="oColOrderSize" prefWidth="92.0" text="Order Size" />
+                                    <TableColumn fx:id="oColStoreId" prefWidth="72.0" text="Store ID" />
+                                </columns>
+                              </TableView>
+                              <ComboBox id="CustomerComboBox" fx:id="CustomerComboBox" cacheShape="false" layoutX="15.0" layoutY="75.0" prefWidth="150.0" promptText="Select Customer" />
+                              <ComboBox id="storeComboBox" fx:id="oStoreComboBox" layoutX="15.0" layoutY="105.0" prefWidth="150.0" promptText="Select Store" />
+                              <ComboBox fx:id="orderSize" layoutX="14.0" layoutY="195.0" prefWidth="150.0" promptText="Select Order Size" />
+                              <ComboBox fx:id="orderSelector" layoutX="15.0" layoutY="15.0" prefWidth="150.0" promptText="New Order" />
+                              <Button fx:id="oConfirmEditBtn" layoutX="14.0" layoutY="465.0" mnemonicParsing="false" onAction="#editOrder" prefHeight="25.0" prefWidth="150.0" text="Confirm Edit" />
+                              <Button fx:id="oRemoveOrderBtn" layoutX="14.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeOrder" prefHeight="25.0" prefWidth="150.0" text="Remove Selected Order" />
+                              <Line endX="100.0" layoutX="79.0" layoutY="56.0" startX="-100.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Employees">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField id="EmployeeLastName" fx:id="EmployeeLastName" layoutX="15.0" layoutY="90.0" promptText="Last Name" />
+                              <TextField id="EmployeeFirstName" fx:id="EmployeeFirstName" layoutX="15.0" layoutY="120.0" promptText="First Name" />
+                              <TextField id="EmployeePhoneNumber" fx:id="EmployeePhoneNumber" layoutX="15.0" layoutY="150.0" promptText="Phone Number" />
+                              <ComboBox fx:id="eStoreSelector" layoutX="15.0" layoutY="60.0" prefWidth="150.0" promptText="Store" />
+                              <Button fx:id="eAddEmployeeBtn" layoutX="15.0" layoutY="445.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="150.0" text="Add Employee" />
+                              <TableView fx:id="employeeTable" layoutX="180.0" layoutY="15.0" prefHeight="515.0" prefWidth="600.0">
+                                <columns>
+                                  <TableColumn fx:id="eColEmpID" prefWidth="91.0" text="Employee ID" />
+                                  <TableColumn fx:id="eColEmpStore" prefWidth="103.0" text="Employee Store" />
+                                    <TableColumn fx:id="eColName" prefWidth="127.0" text="Name" />
+                                    <TableColumn fx:id="eColAvail" prefWidth="109.0" text="Availability" />
+                                    <TableColumn fx:id="eColCaps" prefWidth="79.0" text="Capabilities" />
+                                    <TableColumn fx:id="eColPhone" prefWidth="90.0" text="Phone" />
+                                </columns>
+                              </TableView>
+                              <ComboBox fx:id="eEmployeeSelector" layoutX="15.0" layoutY="15.0" prefWidth="150.0" promptText="New Employee" />
+                              <Label layoutX="15.0" layoutY="190.0" text="Days Available:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="eCheckSunday" layoutX="20.0" layoutY="210.0" mnemonicParsing="false" text="Sunday" />
+                              <CheckBox fx:id="eCheckMonday" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" text="Monday" />
+                              <CheckBox fx:id="eCheckTuesday" layoutX="20.0" layoutY="250.0" mnemonicParsing="false" text="Tuesday" />
+                              <CheckBox fx:id="eCheckWednesday" layoutX="20.0" layoutY="270.0" mnemonicParsing="false" text="Wednesday" />
+                              <CheckBox fx:id="eCheckThursday" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" text="Thursday" />
+                              <CheckBox fx:id="eCheckFriday" layoutX="20.0" layoutY="310.0" mnemonicParsing="false" text="Friday" />
+                              <CheckBox fx:id="eCheckSaturday" layoutX="20.0" layoutY="330.0" mnemonicParsing="false" text="Saturday" />
+                              <Line endX="100.0" layoutX="80.0" layoutY="50.0" startX="-100.0" />
+                              <Button fx:id="eEditEmployeeBtn" layoutX="15.0" layoutY="475.0" mnemonicParsing="false" onAction="#editEmployee" prefHeight="25.0" prefWidth="150.0" text="Confirm Edit" />
+                              <Button fx:id="eRemoveEmployeeBtn" layoutX="15.0" layoutY="505.0" mnemonicParsing="false" onAction="#removeEmployee" prefHeight="25.0" prefWidth="150.0" text="Remove Employee" />
+                              <Label layoutX="15.0" layoutY="355.0" text="Capabilities:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="eCheckFoodPrep" layoutX="20.0" layoutY="375.0" mnemonicParsing="false" text="Food Preperation" />
+                              <CheckBox fx:id="eCheckDelivery" layoutX="20.0" layoutY="395.0" mnemonicParsing="false" text="Delivery" />
+                              <CheckBox fx:id="eCheckServing" layoutX="20.0" layoutY="415.0" mnemonicParsing="false" text="Serving" />
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Customers">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField id="CustomerLastName" fx:id="CustomerLastName" layoutX="15.0" layoutY="60.0" promptText="Last Name" />
+                              <TextField id="CustomerFirstName" fx:id="CustomerFirstName" layoutX="15.0" layoutY="90.0" promptText="First Name" />
+                              <TextField id="CustomerAddress" fx:id="CustomerAddress" layoutX="15.0" layoutY="120.0" promptText="Address" />
+                              <TextField id="CustomerCity" fx:id="CustomerCity" layoutX="15.0" layoutY="150.0" promptText="City" />
+                              <TextField id="State" fx:id="CustomerState" layoutX="15.0" layoutY="180.0" promptText="State" />
+                              <TextField id="CustomerPhoneNumber" fx:id="CustomerPhoneNumber" layoutX="15.0" layoutY="210.0" promptText="Phone Number" />
+                              <Button id="PlaceOrderBtn" fx:id="cAddCustomerBtn" layoutX="15.0" layoutY="243.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="150.0" text="Add Customer" />
+                              <TableView id="customerTable" fx:id="customerTable" layoutX="180.0" layoutY="15.0" prefHeight="515.0" prefWidth="600.0">
+                                 <columns>
+                                    <TableColumn fx:id="colCID" text="Customer ID" />
+                                    <TableColumn fx:id="colCLastName" prefWidth="71.0" text="Last Name" />
+                                    <TableColumn fx:id="colCFirstName" prefWidth="78.0" text="First Name" />
+                                    <TableColumn fx:id="colCAddress" prefWidth="123.0" text="Address" />
+                                    <TableColumn fx:id="colCCity" minWidth="0.0" prefWidth="100.0" text="City" />
+                                    <TableColumn fx:id="colCState" prefWidth="44.0" text="State" />
+                                    <TableColumn fx:id="colCPhoneNumber" prefWidth="103.0" text="Phone Number" />
+                                 </columns>
+                              </TableView>
+                              <ComboBox fx:id="cCustomerComboBox" layoutX="15.0" layoutY="15.0" prefWidth="150.0" promptText="New Customer" />
+                              <Button fx:id="RemoveCustomerBtn" layoutX="15.0" layoutY="273.0" mnemonicParsing="false" onAction="#removeCustomer" prefHeight="25.0" prefWidth="150.0" text="Remove Customer" />
+                              <Line endX="100.0" layoutX="79.0" layoutY="50.0" startX="-100.0" />
+                              <Button fx:id="editCustomerBtn" layoutX="15.0" layoutY="304.0" mnemonicParsing="false" onAction="#editCustomer" prefHeight="25.0" prefWidth="150.0" text="Confirm Edit" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Detail View">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="detailTable" layoutX="180.0" layoutY="15.0" prefHeight="515.0" prefWidth="600.0">
+                                <columns>
+                                  <TableColumn fx:id="dColEmployee" prefWidth="102.0" text="Employee" />
+                                  <TableColumn fx:id="dColTask" prefWidth="100.0" text="Task" />
+                                </columns>
+                              </TableView>
+                              <ComboBox fx:id="dOrderSelector" layoutX="14.0" layoutY="15.0" prefWidth="150.0" promptText="Select Order" />
+                              <TextArea fx:id="dTextArea" editable="false" layoutX="14.0" layoutY="52.0" prefHeight="300.0" prefWidth="150.0" />
+                              <Button fx:id="completeOrderBtn" layoutX="14.0" layoutY="363.0" mnemonicParsing="false" onAction="#completeOrder" prefHeight="25.0" prefWidth="149.0" text="Complete Order" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
